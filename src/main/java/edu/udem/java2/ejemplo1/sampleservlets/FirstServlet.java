@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
+import edu.udem.java2.ejemplo1.vo.Persona;
 
 /**
  *
@@ -131,12 +133,21 @@ public class FirstServlet extends HttpServlet {
                     + "</head>\n"
                     + "<body>\n"
                     + "\n"
-                    + "<form action=\"/action_page.php\">\n"
+                    + "<form action=\"FirstServlet\" method=\"POST\">\n"
                     + "  <div class=\"container\">\n"
                     + "    <h1>Register</h1>\n"
                     + "    <p>Please fill in this form to create an account.</p>\n"
                     + "    <hr>\n"
                     + "\n"
+                    + "    <label for=\"psw\"><b>Name</b></label>\n"
+                    + "    <input type=\"text\" placeholder=\"Enter Password\" name=\"name\" required>\n"
+                    + "    \n"
+                    + "    <label for=\"psw\"><b>LastName</b></label>\n"
+                    + "    <input type=\"text\" placeholder=\"Enter Password\" name=\"lastName\" required>\n"
+                    + "    \n"
+                    + "    <label for=\"psw\"><b>User</b></label>\n"
+                    + "    <input type=\"text\" placeholder=\"Enter Password\" name=\"user\" required>\n"
+                    + "	\n"
                     + "    <label for=\"email\"><b>Email</b></label>\n"
                     + "    <input type=\"text\" placeholder=\"Enter Email\" name=\"email\" required>\n"
                     + "\n"
@@ -144,7 +155,7 @@ public class FirstServlet extends HttpServlet {
                     + "    <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n"
                     + "\n"
                     + "    <label for=\"psw-repeat\"><b>Repeat Password</b></label>\n"
-                    + "    <input type=\"password\" placeholder=\"Repeat Password\" name=\"psw-repeat\" required>\n"
+                    + "    <input type=\"password\" placeholder=\"Repeat Password\" name=\"pswRepeat\" required>\n"
                     + "    <hr>\n"
                     + "    <p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p>\n"
                     + "\n"
@@ -159,33 +170,49 @@ public class FirstServlet extends HttpServlet {
                     + "</body>\n"
                     + "</html>");
         }
-        }
-
-        /**
-         * Handles the HTTP <code>POST</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doPost
-        (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-//        processRequest(request, response);
-        }
-
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
-        return "Short description";
-        }// </editor-fold>
-
     }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        System.out.println(request.getParameter("name"));
+        System.out.println(request.getParameter("lastName"));
+        System.out.println(request.getParameter("email"));
+        System.out.println(request.getParameter("user"));
+
+
+        Persona persona = new Persona();
+        persona.setNombre(request.getParameter("name"));
+        persona.setApellidos(request.getParameter("lastName"));
+        persona.setUsuario(request.getParameter("user"));
+        //set all the params
+
+        String personaJsonString = new Gson().toJson(persona);
+
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.print(personaJsonString);
+        out.flush();
+//        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
