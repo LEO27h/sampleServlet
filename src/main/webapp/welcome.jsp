@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,8 +8,6 @@
         <title>Welcome</title>
     </head>
     <body>
-        <% 
-            out.println(request.getAttribute("message"));
-        %>
+        <c:out value="${message}"/>
     </body>
 </html>
