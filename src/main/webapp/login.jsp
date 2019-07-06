@@ -1,3 +1,10 @@
+
+<%-- 
+    Document   : formPage
+    Author     : jpramirez
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +12,7 @@
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: white;
+  background-color: black;
 }
 
 * {
@@ -69,7 +76,22 @@ a {
 </head>
 <body>
 
-    <h2>Welcome!!</h2>
+<form action="Login" method="POST">
+  <div class="container">
+    <h1>Log in</h1>
+    <p>Favor ingresar los campos para hacer log in.</p>
+    <hr>
+    
+    <label for="login"><b>login</b></label>
+    <input type="text" placeholder="Ingrese Nombre" name="login" required>
 
-</body>
-</html>
+    <label for="pwd"><b>Password</b></label>
+    <input type="password" placeholder="Ingrese Password" name="pwd" required>
+
+    <button type="submit" class="registerbtn">Log in</button>
+  </div>
+  
+  <div class="container signin">
+    <p>Ya creaste tu cuenta? <a href="formPage.jsp">Sign in</a>.</p>
+  </div>
+</form>

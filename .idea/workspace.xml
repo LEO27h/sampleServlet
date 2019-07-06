@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4555a17-46e2-402f-b768-441238210c5b" name="Default Changelist" comment="" />
+    <list default="true" id="f4555a17-46e2-402f-b768-441238210c5b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/target/classes/.netbeans_automatic_build" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/.netbeans_automatic_build" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -225,12 +228,12 @@
       <option name="presentableId" value="Default" />
       <updated>1561816291337</updated>
       <workItem from="1561816293884" duration="208000" />
-      <workItem from="1561816534726" duration="1140000" />
+      <workItem from="1561816534726" duration="1219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1348000" />
+    <option name="totallyTimeSpent" value="1427000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
