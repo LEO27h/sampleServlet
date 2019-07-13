@@ -11,18 +11,28 @@ public class Persona {
     String apellidos;
     String usuario;
     String password;
+    String email;
 
-
-    public Persona(String nombre, String apellidos, String usuario, String password) {
+    public Persona(String nombre, String apellidos, String usuario, String password, String email) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.usuario = usuario;
         this.password = password;
+        this.email = email;
+        
     }
 
     public Persona() {
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public String getNombre() {
         return nombre;
     }

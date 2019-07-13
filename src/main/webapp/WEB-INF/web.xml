@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <filter>
+    <!--    <filter>
         <filter-name>SecurityFilter</filter-name>
         <filter-class>edu.udem.java2.ejemplo1.sampleservlets.SecurityFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>SecurityFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
     <listener>
         <description>ServletContextListener</description>
         <listener-class>org.h2.server.web.DbStarter</listener-class>
     </listener>
-<!--    <listener>
+    <!--    <listener>
         <listener-class>org.h2.server.web.DbStarter</listener-class>
     </listener>-->
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>DBInitiatorServletListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>H2Console</servlet-name>
         <servlet-class>org.h2.server.web.WebServlet</servlet-class>
@@ -65,6 +69,10 @@
     <servlet-mapping>
         <servlet-name>FirstServlet</servlet-name>
         <url-pattern>/FirstServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SubmitFromJSPServlet</servlet-name>

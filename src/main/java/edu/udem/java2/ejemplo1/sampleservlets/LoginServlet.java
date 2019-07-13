@@ -1,5 +1,6 @@
 package edu.udem.java2.ejemplo1.sampleservlets;
 
+import edu.udem.java2.ejemplo1.sampleservlets.util.JDBCUtil;
 import edu.udem.java2.ejemplo1.vo.Persona;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,8 +25,8 @@ public class LoginServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init();
         usersMap = new HashMap<>();
-        usersMap.put("jsmith", new Persona("Smith", "Jhon", "jsmith", "123"));
-        usersMap.put("mperez", new Persona("Perez", "Mary", "mperez", "456"));
+        usersMap.put("jsmith", new Persona("Smith", "Jhon", "jsmith", "123", ""));
+        usersMap.put("mperez", new Persona("Perez", "Mary", "mperez", "456", ""));
 
     }
 
@@ -43,7 +44,23 @@ public class LoginServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String pwd = request.getParameter("pwd");
+        
+        Persona persona = null;
 
+        if((login != null && login.length() > 0) && (pwd != null && pwd.length() > 0)){
+            persona = JDBCUtil.obtenerPersona(login, pwd);
+        }
+        
+        if (persona != null) {
+            request.setAttribute("message", "Bienvenido" + persona.getNombre() + " " + usersMap);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/welcome.jsp");
+            dispatcher.forward(request, response);
+        }
+        else{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+            dispatcher.forward(request, response);
+        }
+        
         request.setAttribute("message", "Bienvenido " + usersMap.get(login).getNombre() + " " + usersMap.get(login).getApellidos());
 
         if (usersMap.get(login) != null && usersMap.get(login).getPassword().equals(pwd)) {
